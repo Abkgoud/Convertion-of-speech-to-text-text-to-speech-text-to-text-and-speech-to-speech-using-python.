@@ -1,0 +1,106 @@
+#pip install SpeechRecognition
+# pip install gTTS
+# pip install pyaudio
+# pip install pyttsx3
+# pip install playsound  
+import speech_recognition as sr 
+from gtts import gTTS
+import os
+r = sr.Recognizer() 
+n = int(input("For Selection Of Input Press:'1'(Speech) or Press:'2'(Text):"))
+if(1<=n<=2):
+    print("Press:'3' For 'Audio':" "\n"
+          "Press:'4' For 'Text':" "\n"
+          "Press:'5' For 'Both(Audio and Text)':")
+    o = int(input("Select Output Type:"))
+    print("ENTER :'af' ' for 'Afrikaans'" "\n" "ENTER :'sq'  for  'Albanian'"
+"ENTER :'ar' for 'Arabic'" "\n"
+"ENTER :'hy' for 'Armenian'" "\n"
+"ENTER :'bn' for  'Bengali'" "\n"
+"ENTER :'bs' for  'Bosnian'" "\n"
+"ENTER :'ca' for 'Catalan'" "\n" 
+"ENTER :'hr' for 'Croatian'" "\n"
+"ENTER :'cs' for  'Czech'" "\n"
+"ENTER :'da' for 'Danish'" "\n"
+"ENTER :'nl' for 'Dutch'" "\n"
+"ENTER :'en' for 'English'" "\n"
+"ENTER :'et' for 'Estonian'" "\n"
+"ENTER :'tl'  for 'Filipino'" "\n"
+"ENTER :'fi'  for 'Finnish'" "\n" 
+"ENTER :'fr' for 'French'" "\n"
+"ENTER :'de' for 'German'" "\n"
+"ENTER :'el'  for 'Greek'" "\n"
+"ENTER :'en-us' for 'English (US)'" "\n"
+"ENTER :'gu' for 'Gujarati'" "\n"
+"ENTER :'hi' for  'Hindi'" "\n"
+"ENTER :'hu' for 'Hungarian'" "\n"
+"ENTER :'is' for 'Icelandic'" "\n"
+"ENTER :'id' for 'Indonesian'" "\n"
+"ENTER :'it' for 'Italian'" "\n"
+"ENTER :'ja' for 'Japanese'" "\n"
+"ENTER :'en-ca' for 'English (Canada)'" "\n"
+"ENTER :'jw' for 'Javanese'" "\n"
+"ENTER :'kn' for 'Kannada'" "\n"
+"ENTER :'km' for 'Khmer'"  "\n"
+"ENTER :'ko' for 'Korean'" "\n"
+"ENTER :'la'  for 'Latin'" "\n"
+"ENTER :'lv' for 'Latvian'" "\n" 
+"ENTER :'mk' for 'Macedonian'" "\n"
+"ENTER :'ml' for 'Malayalam'" "\n"
+"ENTER :'mr'" "\n" 
+"ENTER :'en-in' for 'English (India)'" "\n")
+
+    abk = input("Select language Type:")
+else:
+    print("Invalid input")
+
+# press 1 for speech as input
+#press 2 for text as input
+#output                 
+# press 3 for audio
+ # press 4 for text
+ # press 5 for both
+# define the microphone 
+# record your speech 
+
+if(n==1):
+    print("Tell Your Input To Python...")
+    r = sr.Recognizer()
+    with sr.Microphone() as source:
+        print("Listening....")
+        r.adjust_for_ambient_noise(source) # This filters noise
+        r.pause_threshold = 3
+        audio = r.listen(source)
+    result = r.recognize_google(audio)
+elif(n==2):
+    result = input("Enter Your Text:")
+mytext = result
+
+# Language in which you want to convert
+language = abk
+
+# Passing the text and language to the engine,2
+
+# here we have marked slow=False. Which tells
+# the module that the converted audio should
+# have a high speed
+
+
+# Saving the converted audio in a mp3 file named
+# welcome
+
+# Playing the converted file             
+myobj = gTTS(text=mytext, lang=language, slow=False)    
+myobj.save("welcome.mp3")             
+if(o==3):                                                                                                     
+    os.system("start welcome.mp3")                       
+elif(o==4):                                               
+    print("Your Given Input:",result)                                          
+    
+elif(o==5): 
+    os.system("start welcome.mp3")
+    print("Your Given Input:",result)
+else:
+    os.system("start welcome.mp3") 
+print("\n\n")  
+print("Task Completed...")
